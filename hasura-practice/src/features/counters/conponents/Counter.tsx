@@ -1,6 +1,13 @@
-import { useState } from 'react'
+import { FC, useState } from 'react'
+import { useRecoilState } from 'recoil'
+import { countersState } from '../atom'
 
-export const Counter = () => {
+type Props = {
+  counterId: number
+}
+
+export const Counter: FC<Props> = ({ counterId }) => {
+  const [counters, setCounters] = useRecoilState(countersState)
   const [count, setCount] = useState(0)
 
   function increment() {
@@ -12,6 +19,11 @@ export const Counter = () => {
   }
   function reset() {
     setCount(0)
+  }
+
+  function deleteCounter() {
+    const filterCounters = counters.filter((counter) => counter.id !== counterId)
+    setCounters(filterCounters)
   }
 
   return (
@@ -32,8 +44,9 @@ export const Counter = () => {
         <button className=' bg-yellow-500 text-white p-1' onClick={reset}>
           0
         </button>
-        {/* TODO: counter削除処理を実装する */}
-        <button className='bg-white'>☓</button>
+        <button className='bg-white' onClick={deleteCounter}>
+          ☓
+        </button>
       </div>
     </div>
   )
