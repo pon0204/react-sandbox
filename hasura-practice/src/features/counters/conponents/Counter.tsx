@@ -15,7 +15,7 @@ export const Counter = () => {
   }
 
   return (
-    <div className='w-[30rem] mx-auto bg-gray-50 p-2 grid grid-cols-3 text-center items-center'>
+    <div className='bg-gray-50 p-2 grid grid-cols-3 text-center items-center mb-4'>
       <div>
         <input type='text' className='p-1 w-full' placeholder='new' />
       </div>
