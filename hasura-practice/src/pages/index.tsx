@@ -7,16 +7,10 @@ import { countersState } from '../features/counters/atom'
 export const Index = () => {
   const [counters, setCounters] = useRecoilState(countersState)
   return (
-    <div className='header-layout'>
-      <Header />
-      <div className='sidebar-layout'>
-        <Sidebar />
-        <main className='py-10'>
-          {counters.map((counter) => (
-            <Counter key={counter.id} />
-          ))}
-        </main>
-      </div>
+    <div>
+      {counters.map((counter) => (
+        <Counter key={counter.id} />
+      ))}
     </div>
   )
 }
