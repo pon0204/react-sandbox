@@ -1,5 +1,6 @@
 import { Header } from './components/layouts/Header'
 import { Sidebar } from './components/layouts/Sidebar'
+import { Counter } from './features/counters/Counter'
 
 function App() {
   return (
@@ -8,7 +9,9 @@ function App() {
         <Header />
         <div className='sidebar-layout'>
           <Sidebar />
-          <main className=''></main>
+          <main className='py-10'>
+            <Counter />
+          </main>
         </div>
       </div>
     </div>
