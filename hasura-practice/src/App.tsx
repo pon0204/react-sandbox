@@ -1,6 +1,6 @@
 import { Header } from './components/layouts/Header'
 import { Sidebar } from './components/layouts/Sidebar'
-import { Counter } from './features/counters/Counter'
+import { Counter } from './features/counters/conponents/Counter'
 
 function App() {
   return (
