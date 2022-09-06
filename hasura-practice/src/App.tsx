@@ -1,19 +1,12 @@
-import { Header } from './components/layouts/Header'
-import { Sidebar } from './components/layouts/Sidebar'
-import { Counter } from './features/counters/conponents/Counter'
+import { RecoilRoot } from 'recoil'
+import { Index } from './pages'
 
 function App() {
   return (
     <div className='App'>
-      <div className='header-layout'>
-        <Header />
-        <div className='sidebar-layout'>
-          <Sidebar />
-          <main className='py-10'>
-            <Counter />
-          </main>
-        </div>
-      </div>
+      <RecoilRoot>
+        <Index />
+      </RecoilRoot>
     </div>
   )
 }
