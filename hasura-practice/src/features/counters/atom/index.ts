@@ -6,7 +6,7 @@ export const countersState = atom<TCounter[]>({
   default: [
     {
       id: 1,
-      name: '',
+      name: 'new',
       count: 0,
     },
   ],
