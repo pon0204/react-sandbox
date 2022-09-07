@@ -44,7 +44,7 @@ export const Counter: FC<Props> = ({ counter }) => {
   }
 
   return (
-    <div className='bg-gray-50 p-2 grid grid-cols-3 text-center items-center mb-4'>
+    <div className='bg-gray-50 p-2 grid grid-cols-3 text-center items-center mb-4 shadow-md rounded-md'>
       <div>
         <input
           type='text'
@@ -58,13 +58,13 @@ export const Counter: FC<Props> = ({ counter }) => {
         <p className='font-bold text-xl'>{counter.count}</p>
       </div>
       <div className='grid grid-cols-4  gap-x-2'>
-        <button className=' bg-red-500 text-white p-1' onClick={increment}>
+        <button className=' bg-red-500 text-white p-1 rounded-md' onClick={increment}>
           +
         </button>
-        <button className='bg-blue-500 text-white p-1' onClick={decrement}>
+        <button className='bg-blue-500 text-white p-1 rounded-md' onClick={decrement}>
           -
         </button>
-        <button className=' bg-yellow-500 text-white p-1' onClick={reset}>
+        <button className=' bg-yellow-500 text-white p-1 rounded-md' onClick={reset}>
           0
         </button>
         <button className='bg-white' onClick={deleteCounter}>
