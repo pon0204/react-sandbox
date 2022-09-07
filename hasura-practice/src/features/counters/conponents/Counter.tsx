@@ -1,38 +1,61 @@
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import { useRecoilState } from 'recoil'
 import { countersState } from '../atom'
+import { TCounter } from '../types'
 
 type Props = {
-  counterId: number
+  counter: TCounter
 }
 
-export const Counter: FC<Props> = ({ counterId }) => {
+export const Counter: FC<Props> = ({ counter }) => {
   const [counters, setCounters] = useRecoilState(countersState)
-  const [count, setCount] = useState(0)
 
   function increment() {
-    setCount(count + 1)
+    const newCounters = counters.map((currentCounter) =>
+      currentCounter.id === counter.id ? { ...counter, count: counter.count + 1 } : currentCounter,
+    )
+    setCounters(newCounters)
   }
 
   function decrement() {
-    if (count > 0) setCount(count - 1)
+    if (!(counter.count > 0)) return
+    const newCounters = counters.map((currentCounter) =>
+      currentCounter.id === counter.id ? { ...counter, count: counter.count - 1 } : currentCounter,
+    )
+    setCounters(newCounters)
   }
   function reset() {
-    setCount(0)
+    const newCounters = counters.map((currentCounter) =>
+      currentCounter.id === counter.id ? { ...counter, count: 0 } : currentCounter,
+    )
+    setCounters(newCounters)
+  }
+
+  function handleInputChange(name: string) {
+    const newCounters = counters.map((currentCounter) =>
+      currentCounter.id === counter.id ? { ...counter, name } : currentCounter,
+    )
+    setCounters(newCounters)
   }
 
   function deleteCounter() {
-    const filterCounters = counters.filter((counter) => counter.id !== counterId)
+    const filterCounters = counters.filter((currentCounter) => currentCounter.id !== counter.id)
     setCounters(filterCounters)
   }
 
   return (
     <div className='bg-gray-50 p-2 grid grid-cols-3 text-center items-center mb-4'>
       <div>
-        <input type='text' className='p-1 w-full' placeholder='new' />
+        <input
+          type='text'
+          className='p-1 w-full'
+          placeholder='new'
+          value={counter.name}
+          onChange={(event) => handleInputChange(event.target.value)}
+        />
       </div>
       <div>
-        <p className='font-bold text-xl'>{count}</p>
+        <p className='font-bold text-xl'>{counter.count}</p>
       </div>
       <div className='grid grid-cols-4  gap-x-2'>
         <button className=' bg-red-500 text-white p-1' onClick={increment}>

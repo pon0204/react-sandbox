@@ -15,7 +15,7 @@ export const Index = () => {
   return (
     <div className='w-[30rem] mx-auto text-center'>
       {counters.map((counter) => (
-        <Counter key={counter.id} counterId={counter.id} />
+        <Counter key={counter.id} counter={counter} />
       ))}
       <button className=' bg-green-400 mt-4 text-white p-1 w-full' onClick={addCounter}>
         new counter
