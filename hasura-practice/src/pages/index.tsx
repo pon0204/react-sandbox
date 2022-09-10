@@ -2,6 +2,7 @@ import { Counter } from '../features/counters/conponents/Counter'
 import { useRecoilState } from 'recoil'
 import { countersState } from '../features/counters/atom'
 import { useState } from 'react'
+import { useQuery, gql } from '@apollo/client'
 
 export const Index = () => {
   const [counters, setCounters] = useRecoilState(countersState)
@@ -11,6 +12,20 @@ export const Index = () => {
     setCounters([...counters, { id: counterId + 1, name: 'new', count: 0 }])
     setCounterId(counterId + 1)
   }
+  const GET_COUNTERS = gql`
+    query {
+      counter {
+        id
+        name
+        count
+        isDeleted
+      }
+    }
+  `
+
+  const { loading, error, data } = useQuery(GET_COUNTERS)
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error</p>
 
   return (
     <div className='w-[30rem] mx-auto text-center'>
