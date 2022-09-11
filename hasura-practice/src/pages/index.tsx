@@ -2,28 +2,19 @@ import { Counter } from '../features/counters/conponents/Counter'
 import { useRecoilState } from 'recoil'
 import { countersState } from '../features/counters/atom'
 import { useState } from 'react'
-import { useQuery, gql } from '@apollo/client'
+import { useCountersQuery } from '../features/counters/hooks/useCountersQuery'
 
 export const Index = () => {
   const [counters, setCounters] = useRecoilState(countersState)
   const [counterId, setCounterId] = useState(1)
+  const { loading, error } = useCountersQuery()
 
   function addCounter() {
     setCounters([...counters, { id: counterId + 1, name: 'new', count: 0 }])
     setCounterId(counterId + 1)
   }
-  const GET_COUNTERS = gql`
-    query {
-      counter {
-        id
-        name
-        count
-        isDeleted
-      }
-    }
-  `
 
-  const { loading, error, data } = useQuery(GET_COUNTERS)
+  // TODO: suspenseの仕組みを調べてコード改善
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error</p>
 
