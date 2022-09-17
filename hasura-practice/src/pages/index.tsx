@@ -7,6 +7,7 @@ import { gql, useMutation } from '@apollo/client'
 
 export const Index = () => {
   const [counters, setCounters] = useRecoilState(countersState)
+  // TODO: IDが被ってしまうため、useStateでのID処理をやめる
   const [counterId, setCounterId] = useState(1)
   const { loading, error } = useCountersQuery()
 
@@ -53,6 +54,7 @@ export const Index = () => {
   // TODO: suspenseの仕組みを調べてコード改善
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error</p>
+  // TODO: save時のLoading処理を実装
 
   return (
     <div className='w-[30rem] mx-auto text-center'>
